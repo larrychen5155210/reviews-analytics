@@ -23,5 +23,8 @@ for d in data:
 		new.append(d)
 print('總共有', len(new), '筆留言長度小於100')
 
-print(data[1])
-print(len(data[1]))
+good = []
+for d in data:
+	if 'good' in d:
+		good.append(d)
+print('總共有', len(good), '筆留言提到good')
