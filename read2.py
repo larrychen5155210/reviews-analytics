@@ -1,11 +1,18 @@
+import time
+import progressbar
 
 data = []
+start_time = time.time()
+word_count = {}
+bar = progressbar.ProgressBar(max_value=1000000)
 with open('reviews.txt', 'r') as f:
+	count = 0
 	for line in f:
 		data.append(line)
-print(data[0])
-
-word_count = {}
+		count += 1
+		bar.update(count)
+print('長度 = ', len(data))
+count = 0
 for d in data:
 	words = d.split()
 	for word in words:
@@ -13,7 +20,10 @@ for d in data:
 			word_count[word] = 1 # 新增新的key進word_count字典
 		else:
 			word_count[word] += 1
-
+	count += 1
+	bar.update(count)
+end_time = time.time()
+print('總共花了', end_time - start_time, '秒')
 for wc in word_count:
 	if word_count[wc] > 1000000:
 		print(wc, ':', word_count[wc])
